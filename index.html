@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Circles</title>
+    <style>
+      #map {
+        height: 100%;
+      }
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      var citymap = {
+        smp1: { center: {lat: -7.2572992407932, lng: 112.74767637971}, terjauh: 870.86000 },
+        smp2: { center: {lat: -7.24264, lng: 112.736109}, terjauh: 1032.44000 },
+        smp3: { center: {lat: -7.2561602421072, lng: 112.73616067113}, terjauh: 810.74000 },
+        smp4: { center: {lat: -7.25685, lng: 112.73583}, terjauh: 867.82000 },
+        smp5: { center: {lat: -7.2348112851923, lng: 112.73125374967}, terjauh: 602.85000 },
+        smp6: { center: {lat: -7.2738924742811, lng: 112.74852806134}, terjauh: 659.05000 },
+        smp7: { center: {lat: -7.22394, lng: 112.72997}, terjauh: 823.09000 },
+        smp8: { center: {lat: -7.242634, lng: 112.746324}, terjauh: 753.29000 },
+        smp9: { center: {lat: -7.2500122396392, lng: 112.76528668221}, terjauh: 552.60000 },
+        smp10: { center: {lat: -7.2778193, lng: 112.7324299}, terjauh: 637.99000 },
+        smp11: { center: {lat: -7.2234688568202, lng: 112.74402221469}, terjauh: 560.29000 },
+        smp12: { center: {lat: -7.2978891389302, lng: 112.74447854323}, terjauh: 509.94000 },
+        smp13: { center: {lat: -7.320498838831, lng: 112.7416991374}, terjauh: 971.16000 },
+        smp14: { center: {lat: -7.2374945205231, lng: 112.60871546858}, terjauh: 1727.79000 },
+        smp15: { center: {lat: -7.2262618477385, lng: 112.77560927029}, terjauh: 635.26000 },
+        smp16: { center: {lat: -7.3240459401773, lng: 112.70657011409}, terjauh: 902.20000 },
+        smp17: { center: {lat: -7.319455794322, lng: 112.76346921231}, terjauh: 1676.82000 },
+        smp18: { center: {lat: -7.24299, lng: 112.789912}, terjauh: 1530.46000 },
+        smp19: { center: {lat: -7.2887726379336, lng: 112.78021851653}, terjauh: 1172.07000 },
+        smp20: { center: {lat: -7.269899, lng: 112.653089}, terjauh: 1354.17000 },
+        smp21: { center: {lat: -7.31930001681894, lng: 112.71368398088}, terjauh: 1558.47000 },
+        smp22: { center: {lat: -7.3367010012933, lng: 112.71696934722}, terjauh: 976.81000 },
+        smp23: { center: {lat: -7.319904, lng: 112.777766}, terjauh: 891.79000 },
+        smp24: { center: {lat: -7.3264224958088, lng: 112.69448560846}, terjauh: 1436.66000 },
+        smp25: { center: {lat: -7.2620525709707, lng: 112.71197096197}, terjauh: 544.19000 },
+        smp26: { center: {lat: -7.2526766322641, lng: 112.6614942467}, terjauh: 861.20000 },
+        smp27: { center: {lat: -7.2101311200891, lng: 112.75674238623}, terjauh: 870.37000 },
+        smp28: { center: {lat: -7.308723, lng: 112.664907}, terjauh: 1869.57000 },
+        smp29: { center: {lat: -7.2662812418961, lng: 112.75451446627}, terjauh: 864.66000 },
+        smp30: { center: {lat: -7.3069594442807, lng: 112.79012907416}, terjauh: 1471.95000 },
+        smp31: { center: {lat: -7.219442, lng: 112.766653}, terjauh: 684.91000 },
+        smp32: { center: {lat: -7.3071014279776, lng: 112.73380961227}, terjauh: 550.46000 },
+        smp33: { center: {lat: -7.290572608176, lng: 112.69659693006}, terjauh: 2871.49000 },
+        smp34: { center: {lat: -7.3195245843107, lng: 112.68700728371}, terjauh: 1521.42000 },
+        smp35: { center: {lat: -7.3274485610578, lng: 112.77293743684}, terjauh: 749.67000 },
+        smp36: { center: {lat: -7.3298058570294, lng: 112.71331924785}, terjauh: 2180.16000 },
+        smp37: { center: {lat: -7.248294, lng: 112.749684}, terjauh: 760.99000 },
+        smp38: { center: {lat: -7.2342484182952, lng: 112.73487769081}, terjauh: 1546.22000 },
+        smp39: { center: {lat: -7.309645, lng: 112.760732}, terjauh: 733.29000 },
+        smp40: { center: {lat: -7.317981, lng: 112.648738}, terjauh: 2938.76000 },
+        smp41: { center: {lat: -7.2418639, lng: 112.7508113}, terjauh: 970.79000 },
+        smp42: { center: {lat: -7.24708120904981, lng: 112.713873976844}, terjauh: 726.43000 },
+        smp43: { center: {lat: -7.2508428050767, lng: 112.73416424208}, terjauh: 962.92000 },
+        smp44: { center: {lat: -7.230803, lng: 112.745882}, terjauh: 753.21000 },
+        smp45: { center: {lat: -7.2634723166697, lng: 112.78530904663}, terjauh: 1159.31000 },
+        smp46: { center: {lat: -7.2897273700638, lng: 112.71530778895}, terjauh: 798.40000 },
+        smp47: { center: {lat: -7.2653118667763, lng: 112.67254976935}, terjauh: 684.47000 },
+        smp48: { center: {lat: -7.29662, lng: 112.755638}, terjauh: 691.00000 },
+        smp49: { center: {lat: -7.342181, lng: 112.752264}, terjauh: 6359.44000 },
+        smp50: { center: {lat: -7.26238957594551, lng: 112.696686902189}, terjauh: 1013.93000 },
+        smp51: { center: {lat: -7.3317076731294, lng: 112.6859462576}, terjauh: 8493.28000 },
+        smp52: { center: {lat: -7.305061, lng: 112.782162}, terjauh: 2884.49000 },
+        smp53: { center: {lat: -7.2559938210463, lng: 112.63429112136}, terjauh: 1060.28000 },
+        smp54: { center: {lat: -7.2277026334216, lng: 112.78493157539}, terjauh: 4302.28000 },
+        smp55: { center: {lat: -7.3350966794821, lng: 112.71196211905}, terjauh: 4860.23000 },
+        smp56: { center: {lat: -7.284148, lng: 112.707614}, terjauh: 1215.60000 },
+        smp57: { center: {lat: -7.344208, lng: 112.73876}, terjauh: 5893.89000 },
+        smp58: { center: {lat: -7.227289086523, lng: 112.767159249}, terjauh: 514.18000 },
+        smp59: { center: {lat: -7.3225678267105, lng: 112.68539292509}, terjauh: 7119.74000 },
+        smp60: { center: {lat: -7.2282971, lng: 112.7800028}, terjauh: 1215.34000 },
+        smp61: { center: {lat: -7.2567168495673, lng: 112.65615749049}, terjauh: 982.67000 },
+        smp62: { center: {lat: -7.3415817415616, lng: 112.79483067644}, terjauh: 1522.33000 },
+        smp63: { center: {lat: -7.1978054943672, lng: 112.6632064633}, terjauh: 8272.54000 }
+      };
+
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: {lat: -7.23, lng: 112.73},
+          mapTypeId: 'terrain'
+        });
+        for (var city in citymap) {
+          var cityCircle = new google.maps.Circle({
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: '#FF0000',
+            fillOpacity: 0.35,
+            map: map,
+            center: citymap[city].center,
+            radius: citymap[city].terjauh
+          });
+          var marker = new google.maps.Marker({
+            position: citymap[city].center,
+            map: map,
+            title: city
+          });
+        }
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDi821pNDBDyWG9BFdGFkMM6v1A8rqCZw&callback=initMap"></script>
+  </body>
+</html>
